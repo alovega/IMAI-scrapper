@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="cover">
+      <h1>Get influencer profile.</h1>
+      <form  class="flex-form" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+        <label for="from">
+          <i class="ion-location"></i>
+        </label>
+        <input type="search" formControlName="account" placeholder="Which influencer do you want to get?">
+        <input type="submit" value="Search">
+      </form>
+      <span class="text-danger flex-form" *ngIf="(accountFormControl.account.touched || submitted) && accountFormControl.account.errors?.required">
+        Influencer name is required
+      </span>
+      <div id="madeby">
+        <span>
+          <!-- Photo by <a href="https://unsplash.com/@benblenner" target="_blank">Ben Blennerhassett</a> -->
+        </span>
+      </div>
+    </div>
+  
+  </div>

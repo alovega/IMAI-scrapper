@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  angular:
+      image: alovega/scrapper-cli
+      ports:
+        - 9400:80
+      expose:
+        - 80
+      restart: unless-stopped
+  server: 
+    image: alovega/scrapper-nest-project
+    restart: unless-stopped
+    ports:
+      - 9401:9401
+    expose:
+      - 9401
+    command: [ "npm", "run", "start:prod" ]

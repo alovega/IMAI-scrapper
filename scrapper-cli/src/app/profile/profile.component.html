@@ -1,0 +1,75 @@
+<body *ngIf="!this.loader.getLoading()">
+    <header>
+        <div class="container">
+    
+            <div class="profile">
+    
+                <div class="profile-image">
+                    <img src="{{display_data.profile_image_link}}" alt="">
+                    <app-image [url]="display_data.profile_image_link" *ngIf="display_data.profile_image_link"></app-image>
+                 </div>
+                 <div class="profile-user-settings">
+                    <h1 class="profile-user-name">{{display_data.account}}</h1>
+                    <button class="btn profile-edit-btn">Edit Profile</button>
+                    <button class="btn profile-settings-btn" aria-label="profile settings"><fa-icon [icon]=faCog aria-hidden="true"></fa-icon></button> 
+                 </div>
+                 <div class="profile-stats">
+                    <ul>
+                        <li>
+                            <span class="profile-stat-count">{{display_data.posts_count}}</span> posts
+                        </li>
+                        <li>
+                            <span class="profile-stat-count">{{display_data.followers}}</span> followers
+                        </li>
+                        <li>
+                            <span class="profile-stat-count">{{display_data.following}}</span> following
+                        </li>
+                    </ul>
+                 </div>
+                 <div class="profile-bio">
+                    <p> 
+                        <span class="profile-real-name">{{display_data.profile_name}}</span> {{display_data.biography}}
+                    </p>
+                 </div>
+            </div>
+            <!--End of profile section-->
+        </div>
+            <!--End of container -->
+        </header>
+    
+        <main>
+            <div class="container">
+                <div class="gallery">
+                    <div class="gallery-item" tabindex="0" *ngFor="let gallery_item of profile" (click)="redirect(gallery_item.url)">
+                        <!-- <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt=""> -->
+                        <div class="gallery-item-type" *ngIf="gallery_item.media_type==='Reels'">
+    
+                            <span class="visually-hidden">Video</span><fa-icon  [icon]=faVideo aria-hidden="true"></fa-icon>
+                        </div>
+                        <div class="gallery-item-type" *ngIf="gallery_item.media_type==='Carousel'">
+    
+                            <span class="visually-hidden">Gallery</span><fa-icon [icon]=faClone aria-hidden="true"></fa-icon>
+    
+                        </div>
+                        <!-- <img src="{{gallery_item.image_url}}" crossorigin="anonymous" class="gallery-image" alt=""> -->
+                        <app-image [url]="gallery_item.image_url" *ngIf="gallery_item.image_url" class="gallery-image"></app-image>
+                        <div class="gallery-item-info">
+                            <ul>
+                                <li class="gallery-item-likes">
+                                    <span class="visually-hidden">Likes:</span>
+                                    <fa-icon  [icon]=faHeart aria-hidden="true"></fa-icon> {{gallery_item.likes}}
+                                </li>
+                                <li class="gallery-item-likes">
+                                    <span class="visually-hidden">Comments:</span>
+                                    <fa-icon  [icon]=faComment aria-hidden="true"></fa-icon> {{gallery_item.comments}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </main>
+</body>
+<app-spinner *ngIf="this.loader.getLoading()"></app-spinner>
+
+    
